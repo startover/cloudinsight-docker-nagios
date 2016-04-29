@@ -15,6 +15,7 @@
 ```
 $ sudo mkdir -p /usr/local/nagios/data
 $ sudo mkdir -p /usr/local/nagios/etc
+$ sudo wget -O /usr/local/nagios/etc/nagios.cfg https://raw.githubusercontent.com/startover/cloudinsight-docker-nagios/master/nagios.cfg
 $ sudo vi /usr/local/nagios/etc/nagios.cfg
 ...
 # 启用 Nagios 的性能数据处理功能
