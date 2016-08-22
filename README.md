@@ -1,14 +1,14 @@
-# Cloud Insight Agent 与 Nagios 集成
+# Cloudinsight Agent 与 Nagios 集成
 
 ## 原理介绍
 
-同大多数 Nagios 的可视化系统一样，Cloud Insight Agent 依赖于 Nagios 输出的指标数据，也即需要启用 Nagios 的性能数据处理功能（在 nagios.cfg 文件中，设置process_performance_data=1即可）。
+同大多数 Nagios 的可视化系统一样，Cloudinsight Agent 依赖于 Nagios 输出的指标数据，也即需要启用 Nagios 的性能数据处理功能（在 nagios.cfg 文件中，设置process_performance_data=1即可）。
 
 ## Nagios 安装配置
 
 由于 Nagios 安装配置较为繁琐，这里通过 Docker 容器的方式来解决这个问题。
 
-然而，Cloud Insight Agent 需要读取 Nagios 的配置文件且依赖于 Nagios 输出的指标数据，所以我们需要将这部分文件挂载到系统主机上。
+然而，Cloudinsight Agent 需要读取 Nagios 的配置文件且依赖于 Nagios 输出的指标数据，所以我们需要将这部分文件挂载到系统主机上。
 
 * 创建 Nagios 配置文件
 
@@ -52,18 +52,14 @@ $ docker run -d --name docker-nagios \
              quantumobject/docker-nagios
 ```
 
-## Cloud Insight Agent 集成
+## Cloudinsight Agent 集成
 
-* 安装 Cloud Insight Agent
-
-```
-$ CI_LICENSE_KEY=YOUR_LICENSE_KEY_HERE bash -c "$(curl -L https://download.oneapm.com/oneapm_ci_agent/install_agent.sh)"
-```
+* [安装](http://cloud.oneapm.com/#/settings) Cloudinsight Agent
 
 * 配置 Nagios 监控
 
 ```
-$ cd /etc/oneapm-ci-agent/conf.d
+$ cd /etc/cloudinsight-agent/conf.d
 $ sudo cp nagios.yaml.example nagios.yaml
 $ sudo vi nagios.yaml
 init_config:
@@ -73,10 +69,10 @@ instances:
   - nagios_conf: /usr/local/nagios/etc/nagios.cfg
 ```
 
-* 重启 Cloud Insight Agent
+* 重启 Cloudinsight Agent
 
 ```
-$ sudo /etc/init.d/oneapm-ci-agent restart
+$ sudo /etc/init.d/cloudinsight-agent restart
 ```
 
 
